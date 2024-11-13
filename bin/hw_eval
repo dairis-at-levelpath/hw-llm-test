@@ -1,0 +1,16 @@
+#!/bin/sh
+
+image_name="hw-eval-llm"
+
+if [ -z "$(docker images -q $image_name)" ]; then
+  echo "$image_name custom image not found locally, building..."
+
+  docker build . --tag $image_name
+
+  if [ $? -ne 0 ]; then
+    echo "Failed to build $image_name image"
+    exit 1
+  fi
+fi
+
+docker run --rm -it -v $(pwd):/app --env-file .env $image_name "$@"
