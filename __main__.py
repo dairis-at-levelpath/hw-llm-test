@@ -124,10 +124,6 @@ def main():
             major_issues.append(review)
         elif lowercase_severity == 'critical':
             critical_issues.append(review)
-    
-    print("Critical issues found:" + str(len(critical_issues)))
-    print("Major issues found:" + str(len(major_issues)))
-    print("Minor issues found:" + str(len(minor_issues)))
 
     # Format output and write response to file
     with open('./result.md', 'w') as f:
@@ -151,6 +147,8 @@ def main():
             major_issue_count=str(len(major_issues)),
             minor_issue_count=str(len(minor_issues))
         ))
+
+        print("Output written to result.md")
 
 
 if __name__ == "__main__":
